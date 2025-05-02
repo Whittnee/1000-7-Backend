@@ -7,14 +7,16 @@ require("dotenv").config();
 app.use(cors());
 app.use(express.json());
 
+app.use("/images", express.static("public/images"));
+
 const products = [
   {
     id: 1,
     name: "Dead Ghoul",
     price: 12.99,
     images: [
-      "https://sankt-peterburg.vse-footbolki.ru/image/catalog/vsm/0/3/3045/3045283/previews/people_1_mansmockfull_front_white_700.jpg",
-      "https://sankt-peterburg.vse-footbolki.ru/image/catalog/vsm/0/3/3045/3045283/previews/people_5_mansmockfull_back_white_700.jpg",
+      "/images/product-1-0.jpg",
+      "/images/product-1-1.jpg",
     ],
     description:
       "The perfect balance of warmth and style. This sweatshirt is made from premium fabric, offering a soft touch and a cozy fit for everyday wear.",
@@ -32,8 +34,8 @@ const products = [
     name: "Drain Face",
     price: 9.99,
     images: [
-      "https://sankt-peterburg.vse-footbolki.ru/image/catalog/vsm/0/3/3053/3053881/previews/people_4_womansmockfull_front_white_700.jpg",
-      "https://sankt-peterburg.vse-footbolki.ru/image/catalog/vsm/0/3/3053/3053881/previews/people_5_mansmockfull_back_white_700.jpg",
+      "/images/product-2-0.jpg",
+      "/images/product-2-1.jpg",
     ],
     description:
       "Effortlessly cool and endlessly comfortable. This sweatshirt is designed with a relaxed fit and a clean-cut look, making it a staple for any season.",
@@ -51,7 +53,7 @@ const products = [
     name: "Rei & Asuka",
     price: 21.99,
     images: [
-      "https://vm.vse-footbolki.ru/image/vm/jpg/0/3/3095/3095893/previews/people_4_manlongfull_front_white_700.jpg",
+      "/images/product-3-0.jpg",
     ],
     description:
       "Upgrade your wardrobe with this versatile long-sleeve tee. Whether you're going for a relaxed or layered look, its comfortable fit makes it a perfect choice.",
@@ -69,7 +71,7 @@ const products = [
     name: "Thousand-seven",
     price: 17.99,
     images: [
-      "https://sankt-peterburg.vse-footbolki.ru/image/catalog/vsm/0/2/2960/2960955/previews/people_4_child_long_cotton_front_darkblue_700.jpg",
+      "/images/product-4-0.jpg",
     ],
     description:
       "A sleek and stylish long-sleeve shirt made for those in-between weather days. Crafted from soft, breathable fabric, it keeps you cozy without overheating",
@@ -87,7 +89,7 @@ const products = [
     name: "ZERO-TWO",
     price: 17.99,
     images: [
-      "https://vm.vse-footbolki.ru/image/vm/jpg/0/3/3002/3002659/previews/people_1_mansmockfull_front_black_700.jpg",
+      "/images/product-5-0.jpg",
     ],
     description:
       "Casual, cozy, and built for layering. Whether you’re lounging or out and about, this sweatshirt provides the perfect mix of comfort and style.",
@@ -105,7 +107,7 @@ const products = [
     name: "DEAD INSIDE MODE",
     price: 15.99,
     images: [
-      "https://vm.vse-footbolki.ru/image/vm/jpg/0/3/3014/3014625/previews/people_4_manshortfull_front_white_700.jpg",
+      "/images/product-6-0.jpg",
     ],
     description:
       "Stay comfortable and stylish with our premium cotton T-shirt. Designed for everyday wear, it offers a soft feel and a perfect fit that keeps you looking fresh all day.",
@@ -123,7 +125,7 @@ const products = [
     name: "Darling in the franxx",
     price: 15.99,
     images: [
-      "https://sankt-peterburg.vse-footbolki.ru/image/catalog/vsm/0/1/1819/1819789/previews/people_4_manshortfull_front_white_700.jpg",
+      "/images/product-7-0.jpg",
     ],
     description:
       "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
@@ -141,7 +143,7 @@ const products = [
     name: "Tokyo Revengers",
     price: 24.99,
     images: [
-      "https://vm.vse-footbolki.ru/image/vm/jpg/0/3/3145/3145985/previews/people_7_manshort_front_white_700.jpg",
+      "/images/product-8-0.jpg",
     ],
     description:
       "Minimalist yet versatile, this tee features a sleek design that pairs effortlessly with any outfit. Elevate your casual style with its superior comfort and durability.",
@@ -159,7 +161,7 @@ const products = [
     name: "Rei Ayanami",
     price: 40.99,
     images: [
-      "https://vm.vse-footbolki.ru/image/vm/jpg/0/3/3184/3184985/previews/people_1_man_pajamas_front_black_700.jpg",
+      "/images/product-9-0.jpg",
     ],
     description:
       "Drift into a peaceful night's sleep with our ultra-soft pajama set. Made from breathable, lightweight fabric, it ensures maximum comfort for a restful night.",
@@ -177,7 +179,7 @@ const products = [
     name: "AKATSUKI's Cloud",
     price: 33.99,
     images: [
-      "https://sankt-peterburg.vse-footbolki.ru/image/catalog/vsm/0/0/152/152519/previews/people_7_man_hoodie_oversize_front_darkblue_700.jpg",
+      "/images/product-10-0.jpg",
     ],
     description:
       "Wrap yourself in warmth with our ultra-soft hoodie. Made from high-quality fleece, it provides maximum coziness while keeping your style on point.",
@@ -195,7 +197,7 @@ const products = [
     name: "Hate myself",
     price: 175.99,
     images: [
-      "https://vm.vse-footbolki.ru/image/vm/jpg/0/3/3129/3129095/previews/people_5_man_winter_jacket_front_black_700.jpg",
+      "/images/product-11-0.jpg",
     ],
     description:
       "Brave the elements in style with our durable and weather-resistant jacket. Designed for both function and fashion, it keeps you warm without compromising on looks.",
@@ -233,7 +235,7 @@ const products = [
     name: "Dead Despair",
     price: 18.99,
     images: [
-      "https://vm.vse-footbolki.ru/image/vm/jpg/0/3/3120/3120579/previews/people_1_mansmockfull_front_black_700.jpg",
+      "/images/product-13-0.jpg",
     ],
     description:
       "Stay cozy and stylish with this classic sweatshirt. Made from ultra-soft cotton blend, it’s perfect for chilly days and casual outfits.",
@@ -251,7 +253,7 @@ const products = [
     name: "Intermission",
     price: 35.99,
     images: [
-      "https://vm.vse-footbolki.ru/image/vm/jpg/0/2/2996/2996437/previews/people_7_man_hoodie_oversize_front_lightpink_700.jpg",
+      "/images/product-14-0.jpg",
     ],
     description:
       "The perfect blend of comfort and street style. This hoodie features a relaxed fit, adjustable drawstring hood, and a kangaroo pocket for a laid-back yet modern look.",
@@ -269,7 +271,7 @@ const products = [
     name: "Evangelion",
     price: 17.99,
     images: [
-      "https://vm.vse-footbolki.ru/image/vm/jpg/0/3/3105/3105013/previews/people_4_manshortfull_front_white_700.jpg",
+      "/images/product-15-0.jpg",
     ],
     description:
       "A timeless classic, this T-shirt is crafted from breathable fabric to keep you cool and confident. Whether layered or worn solo, it's a must-have for any wardrobe.",
@@ -287,7 +289,7 @@ const products = [
     name: "Avocado",
     price: 35.99,
     images: [
-      "https://sankt-peterburg.vse-footbolki.ru/image/catalog/vsm/0/2/2080/2080047/previews/people_1_man_pajamas_front_black_700.jpg",
+      "/images/product-16-0.jpg",
     ],
     description:
       "Drift into dreamland with this ultra-soft pajama set. Designed for maximum comfort, it’s perfect for lazy mornings and cozy nights.",
@@ -305,7 +307,7 @@ const products = [
     name: "Kisuke Urahara",
     price: 29.99,
     images: [
-      "https://vm.vse-footbolki.ru/image/vm/jpg/0/3/3002/3002095/previews/people_7_man_hoodie_oversize_front_black_700.jpg",
+      "/images/product-17-0.jpg",
     ],
     description:
       "Designed for a laid-back streetwear look, this oversized hoodie offers both comfort and a modern edge. Pair it with your favorite jeans or joggers.",
@@ -323,7 +325,7 @@ const products = [
     name: "Penguinius",
     price: 32.99,
     images: [
-      "https://sankt-peterburg.vse-footbolki.ru/image/catalog/vsm/0/2/2931/2931451/previews/people_1_man_pajamas_front_skyblue_700.jpg",
+      "/images/product-18-0.jpg",
     ],
     description:
       "Made from breathable fabric, this pajama set keeps you comfortable all night long. The relaxed fit makes it ideal for lounging in style.",
@@ -341,7 +343,7 @@ const products = [
     name: "Silly Ghoul",
     price: 27.99,
     images: [
-      "https://vm.vse-footbolki.ru/image/vm/jpg/0/3/3115/3115463/previews/people_7_man_hoodie_oversize_front_dustypink_700.jpg",
+      "/images/product-19-0.jpg",
     ],
     description:
       "A must-have for any wardrobe, this hoodie combines warmth and style. The soft fleece lining makes it perfect for layering on colder days.",
