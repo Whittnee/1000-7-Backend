@@ -29,7 +29,7 @@ export const userModel = {
     const cart = result.rows[0]?.cart;
     return snakeToCamelDeep(cart);
   },
-  postCart: async function (
+  postItem: async function (
     userId: number,
     product: TCartProductDB
   ): Promise<void> {
@@ -48,17 +48,16 @@ export const userModel = {
       products: newProducts,
       total_prices: total_prices,
     };
-    console.log(newCart);
     await pool.query("UPDATE users SET cart = $1 WHERE id = $2", [
       newCart,
       userId,
     ]);
   },
-  patchCart: async function (
+  patchItem: async function (
     userId: string,
     productId: number,
     quantity: number
-  ) {
+  ): Promise<void> {
     const result: QueryResult<{ cart: TCartDB }> = await pool.query(
       "SELECT cart FROM users WHERE id = $1",
       [userId]
@@ -77,7 +76,7 @@ export const userModel = {
       ]);
     }
   },
-  deleteCartItem: async function (userId: string, productId: number) {
+  deleteCartItem: async function (userId: string, productId: number): Promise<void> {
     const result: QueryResult<{ cart: TCartDB }> = await pool.query(
       "SELECT cart FROM users WHERE id = $1",
       [userId]
@@ -92,5 +91,20 @@ export const userModel = {
       { products: updatedProducts, total_prices: total_prices },
       userId,
     ]);
+  },
+  clearCart: async function (userId: string): Promise<void> {
+    const result: QueryResult<{ cart: TCartDB }> = await pool.query(
+      "SELECT cart FROM users WHERE id = $1",
+      [userId]
+    );
+    if (result.rowCount === 0) {
+      throw new Error("User not found");
+    }
+    const cart = result.rows[0].cart
+    cart.products = [];
+    const total_prices = calculateTotals(cart.products)
+    await pool.query("UPDATE users SET cart = $1 WHERE id = $2", [
+      { products: cart.products, total_prices: total_prices}, userId
+    ])
   },
 };
