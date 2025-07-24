@@ -6,8 +6,9 @@ import { stripeRouter } from "./routes/stripeRoutes";
 import { getLocation } from "./controllers/locationController";
 import { CURRENT_URL, BACKEND_PORT } from "./config/env";
 import { userRouter } from "./routes/userRoutes";
+import path from "path"
 const app = express();
-dotenv.config();
+dotenv.config({ path: path.join(__dirname, '../.env')});
 app.use(cors());
 app.use(express.json());
 

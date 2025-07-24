@@ -3,7 +3,8 @@ import Stripe from "stripe";
 import dotenv from "dotenv";
 import { FRONTEND_URL } from "../config/env";
 import { TStripeProduct } from "../types/stripe";
-dotenv.config();
+import path from "path"
+dotenv.config({ path: path.join(__dirname, '../../.env')});
 
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
