@@ -1,12 +1,33 @@
 {
-  "name": "backend",
+  "name": "1000-7-backend",
+  "type": "commonjs",
   "version": "1.0.0",
-  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "ts-node src/index.ts",
+    "build": "cross-env NODE_ENV=production tsc",
+    "preview": "node dist/index.js"
+  },
   "dependencies": {
     "axios": "^1.8.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
+    "lodash": "^4.17.21",
+    "pg": "^8.16.3",
     "stripe": "^17.7.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/lodash": "^4.17.20",
+    "@types/node": "^24.0.10",
+    "@types/pg": "^8.15.4",
+    "@typescript-eslint/eslint-plugin": "^8.36.0",
+    "@typescript-eslint/parser": "^8.36.0",
+    "cpx": "^1.5.0",
+    "cross-env": "^7.0.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
   }
 }
